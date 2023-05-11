@@ -1,0 +1,23 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install nasm gcc -y
+
+      - name: Build and Run
+        run: |
+          python3 clam.py simple.clam
+          nasm -f elf64 simple.asm -o simple.o
+          gcc simple.o -o simple
+          ./simple
