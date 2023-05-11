@@ -9,6 +9,15 @@ def generate_code(node, variables):
         if isinstance(node.expression, BinaryOperation):
             left = variables[node.expression.left.name]
             right = variables[node.expression.right.name]
+            # Note that for division, the above implementation does not handle the remainder, 
+            # and it assumes integer division. To support floating-point numbers and arithmetic, 
+            # we'll need to extend the language and the code generator accordingly.
+            operation = {
+                '+': 'add',
+                '-': 'sub',
+                '*': 'imul',
+                '/': 'idiv'
+            }[node.expression.operator]
             return f"""
 section .data
     result dq 0
@@ -21,7 +30,7 @@ section .text
 main:
     sub rsp, 8
     mov rax, {left}
-    add rax, {right}
+    {operation} rax, {right}
     mov [result], rax
     mov rdi, format
     mov rsi, [result]

@@ -42,25 +42,12 @@ def parse(tokens):
         
         elif token_type == 'KEYWORD' and value == 'print':
             _, name = tokens.pop(0)
-            if tokens[0][1] == '+':
-                _, _ = tokens.pop(0) # plus sign
+            if tokens[0][1] in ['+', '-', '*', '/']:
+                _, operator = tokens.pop(0)
                 _, right_value = tokens.pop(0)
-                node = PrintStatement(BinaryOperation(Identifier(name), '+', Identifier(right_value)))
+                node = PrintStatement(BinaryOperation(Identifier(name), operator, Identifier(right_value)))
             else:
                 node = PrintStatement(Identifier(name))
             statements.append(node)
     
     return statements
-
-# test the parser
-source_code = '''
-var x = 10
-var y = 20
-print x + y
-'''
-
-tokens = lex(source_code)
-syntax_tree = parse(tokens)
-
-for node in syntax_tree:
-    print(node.__class__.__name__, vars(node))
