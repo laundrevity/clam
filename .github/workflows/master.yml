@@ -23,4 +23,8 @@ jobs:
     - name: Compile and run
       run: |
         cd python
-        python3 clam.py simple.clam simple
+        python3 clam.py simple.clam
+
+    - name: Run binary
+      run: |
+        ./simple
