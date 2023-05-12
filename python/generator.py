@@ -1,4 +1,4 @@
-from parser import VarDeclaration, PrintStatement, BinaryOperation
+from tree_parser import VarDeclaration, PrintStatement, BinaryOperation
 
 
 def generate_code(node, variables, counter):

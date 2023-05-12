@@ -1,7 +1,7 @@
 import sys
 import subprocess
 from lexer import lex
-from parser import parse
+from tree_parser import parse
 from generator import generate_assembly
 
 

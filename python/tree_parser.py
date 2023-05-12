@@ -26,6 +26,7 @@ class Integer(Node):
     def __init__(self, value):
         self.value = value
 
+
 def parse(tokens):
     tokens = list(tokens) # ensure we can use next() and iter() on tokens
     statements = []
@@ -36,7 +37,17 @@ def parse(tokens):
         if token_type == 'KEYWORD' and value == 'var':
             _, name = tokens.pop(0)
             _, _ = tokens.pop(0) # equals sign
+
+            # check for a minus sign
+            is_negative = False
+            if tokens[0][0] == 'OPERATOR' and tokens[0][1] == '-':
+                is_negative = True
+                tokens.pop(0)
+
             _, value = tokens.pop(0)
+            if is_negative:
+                value == -int(value)
+            
             node = VarDeclaration(name, Integer(value))
             statements.append(node)
         

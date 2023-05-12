@@ -5,7 +5,7 @@ import re
 TOKEN_TYPES = [
     ('KEYWORD', r'\b(var|print)\b'),
     ('IDENTIFIER', r'\b[a-zA-Z_][a-zA-Z0-9_]*\b'),
-    ('INTEGER', r'\b\d+\b'),
+    ('INTEGER', r'-?\b\d+\b'),
     ('OPERATOR', r'[\+\-\*/]'),
     ('EQUALS', r'='),
     ('NEWLINE', r'\n'),
