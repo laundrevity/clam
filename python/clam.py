@@ -3,7 +3,7 @@ import subprocess
 from lexer import lex
 from tree_parser import parse
 from generator import generate_assembly
-
+ 
 
 def compile_clam_file(input_file: str, output_file: str):
     with open(input_file, 'r') as f:
